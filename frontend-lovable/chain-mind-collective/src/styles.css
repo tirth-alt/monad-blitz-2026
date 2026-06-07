@@ -1,0 +1,176 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ember: var(--ember);
+  --color-ember-glow: var(--ember-glow);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Warm paper / off-white base */
+  --background: oklch(0.965 0.02 86);
+  --foreground: oklch(0.3 0.024 148);
+  --card: oklch(0.987 0.015 87);
+  --card-foreground: oklch(0.3 0.024 148);
+  --popover: oklch(0.987 0.015 87);
+  --popover-foreground: oklch(0.3 0.024 148);
+  /* Muted, earthy sage accent */
+  --primary: oklch(0.5 0.063 148);
+  --primary-foreground: oklch(0.98 0.014 88);
+  --secondary: oklch(0.925 0.022 92);
+  --secondary-foreground: oklch(0.32 0.03 148);
+  --muted: oklch(0.93 0.018 90);
+  --muted-foreground: oklch(0.47 0.026 140);
+  --accent: oklch(0.9 0.038 140);
+  --accent-foreground: oklch(0.32 0.04 148);
+  --destructive: oklch(0.55 0.13 35);
+  --destructive-foreground: oklch(0.98 0.014 88);
+  --border: oklch(0.5 0.03 130 / 18%);
+  --input: oklch(0.95 0.016 90);
+  --ring: oklch(0.5 0.063 148);
+  /* `ember` kept as the brand-accent token name, now a muted sage */
+  --ember: oklch(0.49 0.07 148);
+  --ember-glow: oklch(0.6 0.06 134);
+  /* `charcoal` tokens repurposed as warm light surfaces */
+  --charcoal: oklch(0.95 0.016 90);
+  --charcoal-light: oklch(0.92 0.02 92);
+  --sidebar: oklch(0.955 0.018 89);
+  --sidebar-foreground: oklch(0.3 0.024 148);
+  --sidebar-primary: oklch(0.5 0.063 148);
+  --sidebar-primary-foreground: oklch(0.98 0.014 88);
+  --sidebar-accent: oklch(0.9 0.038 140);
+  --sidebar-accent-foreground: oklch(0.32 0.04 148);
+  --sidebar-border: oklch(0.5 0.03 130 / 18%);
+  --sidebar-ring: oklch(0.5 0.063 148);
+
+  --gradient-ember: linear-gradient(135deg, oklch(0.49 0.07 148), oklch(0.56 0.06 130));
+  --gradient-dark: linear-gradient(180deg, oklch(0.98 0.014 88), oklch(0.95 0.02 90));
+  --gradient-glow: radial-gradient(circle at 50% 50%, oklch(0.5 0.07 148 / 10%), transparent 70%);
+  /* Soft, natural drop shadows — no neon glow */
+  --shadow-ember: 0 6px 22px oklch(0.4 0.05 140 / 12%);
+  --shadow-ember-sm: 0 2px 8px oklch(0.4 0.05 140 / 10%);
+  --shadow-card: 0 1px 2px oklch(0.35 0.03 120 / 6%), 0 10px 28px oklch(0.35 0.03 120 / 7%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
+  body {
+    background-image:
+      radial-gradient(circle at 12% 8%, oklch(0.55 0.07 148 / 5%), transparent 45%),
+      radial-gradient(circle at 88% 92%, oklch(0.6 0.06 130 / 4%), transparent 48%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  /* Subtle paper grain for a tactile, hand-made feel */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection { background: oklch(0.5 0.07 148 / 22%); color: oklch(0.24 0.03 148); }
+  code, pre, .font-mono { font-family: var(--font-mono); }
+}
+
+@layer utilities {
+  .text-ember { color: var(--ember); }
+  .bg-ember { background-color: var(--ember); }
+  .bg-gradient-ember { background-image: var(--gradient-ember); }
+  .bg-gradient-dark { background-image: var(--gradient-dark); }
+  .bg-glow { background-image: var(--gradient-glow); }
+  .shadow-ember { box-shadow: var(--shadow-ember); }
+  .shadow-ember-sm { box-shadow: var(--shadow-ember-sm); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .text-glow { text-shadow: none; }
+  .border-ember { border-color: var(--ember); }
+  .glass {
+    background: oklch(0.987 0.015 87 / 86%);
+    backdrop-filter: blur(6px);
+    border: 1px solid oklch(0.5 0.04 130 / 14%);
+  }
+  .ember-border {
+    position: relative;
+  }
+  .ember-border::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+    background: linear-gradient(135deg, oklch(0.5 0.06 148 / 22%), transparent 60%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events: none;
+  }
+  .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+  .animate-slide-in-top { animation: slide-in-top 0.4s ease-out; }
+  .animate-slide-in-right { animation: slide-in-right 0.4s ease-out; }
+  .animate-fade-up { animation: fade-up 0.5s ease-out backwards; }
+  .animate-ember-flash { animation: ember-flash 1.2s ease-out; }
+  .animate-pulse-edge { animation: pulse-edge 1.8s ease-in-out infinite; }
+  .animate-flow { stroke-dasharray: 4 7; animation: flow-dash 0.9s linear infinite; }
+  .animate-float-mote { animation: float-mote linear infinite; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 16px oklch(0.52 0.09 150 / 20%); }
+  50% { box-shadow: 0 0 32px oklch(0.52 0.09 150 / 40%), 0 0 64px oklch(0.62 0.085 138 / 18%); }
+}
+@keyframes slide-in-top {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ember-flash {
+  0% { background: oklch(0.52 0.09 150 / 0%); }
+  30% { background: oklch(0.52 0.09 150 / 22%); box-shadow: 0 0 36px oklch(0.52 0.09 150 / 45%); }
+  100% { background: oklch(0.52 0.09 150 / 0%); }
+}
+@keyframes pulse-edge {
+  0%, 100% { stroke-opacity: 0.4; }
+  50% { stroke-opacity: 1; filter: drop-shadow(0 0 4px var(--ember)); }
+}
+@keyframes flow-dash {
+  to { stroke-dashoffset: -22; }
+}
+@keyframes float-mote {
+  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+  15% { opacity: 0.55; }
+  85% { opacity: 0.45; }
+  100% { transform: translateY(-130px) translateX(24px) scale(1.15); opacity: 0; }
+}

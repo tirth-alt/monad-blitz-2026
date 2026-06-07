@@ -1,0 +1,23 @@
+{
+  "name": "chainmind-contracts",
+  "version": "0.1.0",
+  "description": "ChainMind smart contracts — AgentRegistry, TaskMarketplace, ReputationStore on Monad",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:monad": "hardhat run scripts/deploy.js --network monadTestnet",
+    "seed:local": "hardhat run scripts/seed.js --network localhost",
+    "seed:monad": "hardhat run scripts/seed.js --network monadTestnet",
+    "demo:monad": "hardhat run scripts/demo.js --network monadTestnet"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

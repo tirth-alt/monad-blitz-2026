@@ -1,0 +1,9 @@
+{
+  "chainId": 10143,
+  "network": "monadTestnet",
+  "verifier": "0xE1D32865D5769764E2239d90322585e41c86A054",
+  "reputationThreshold": "1",
+  "ReputationStore": "0xf52A30b7e7016Fe7dD335aA4d1957FF8c94Fa46F",
+  "AgentRegistry": "0x2B83104eDF0aE435aa5014ABeF0Ed6FeB1ead787",
+  "TaskMarketplace": "0xF75BDa54189bd24aEEB9a011F5cfBF8D7b928e05"
+}
